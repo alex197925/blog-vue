@@ -2,28 +2,26 @@
 
 <template>
   <div class="home">
-    <p>My name is {{ name }} and my age is {{ age }}</p>
-    <button @click="handleClick">Click</button>
-    <button @click="age++">Add 1 to age</button>
-    <input type="text" v-model="name" />
+    <h1>Home</h1>
+    <PostListView :posts="posts" />
   </div>
 </template>
 
 <script>
+import PostListView from "@/components/PostListView.vue";
 import { ref } from "vue";
 export default {
   name: "HomeView",
+  components: {
+    PostListView,
+  },
 
   setup() {
-    let name = ref("Mario");
-    let age = ref(30);
-
-    const handleClick = () => {
-      name.value = "Alex";
-      age.value = 40;
-    };
-
-    return { name, age, handleClick };
+    const posts = ref([
+      { title: "welcome to the blog", body: "Lorem ipsum", id: 1 },
+      { title: "top 5 css tips", body: "Lorem ipsum", id: 2 },
+    ]);
+    return { posts };
   },
 };
 </script>
