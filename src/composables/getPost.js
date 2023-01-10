@@ -9,6 +9,11 @@ const getPost = (id) => {
   // Fetching data, don't forget call the function
   const load = async () => {
     try {
+      // simulate delay
+      await new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+      });
+
       let data = await fetch("http://localhost:3000/posts/" + id);
       // console.log(data);
       // If is no data, display error message
