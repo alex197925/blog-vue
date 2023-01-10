@@ -6,13 +6,17 @@
     <h3>{{ post.title }}</h3>
     <p class="pre">{{ post.body }}</p>
   </div>
+  <div v-else>
+    <SpinnerView />
+  </div>
 </template>
 
 <script>
 import getPost from "@/composables/getPost";
-
+import SpinnerView from "@/components/SpinnerView.vue";
 export default {
   props: ["id"],
+  components: { SpinnerView },
 
   setup(props) {
     const { post, error, load } = getPost(props.id);
