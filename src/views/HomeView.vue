@@ -6,6 +6,7 @@
     <div v-if="error">{{ error }}</div>
     <div v-if="posts.length">
       <PostListView :posts="posts" />
+      <TagCloudView :posts="posts" />
     </div>
     <div v-else>
       <SpinnerView />
@@ -17,12 +18,14 @@
 import PostListView from "@/components/PostListView.vue";
 import getPosts from "@/composables/getPosts";
 import SpinnerView from "@/components/SpinnerView.vue";
+import TagCloudView from "@/components/TagCloudView.vue";
 
 export default {
   name: "HomeView",
   components: {
     PostListView,
     SpinnerView,
+    TagCloudView,
   },
 
   setup() {
