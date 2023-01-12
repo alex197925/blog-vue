@@ -9,7 +9,7 @@ import { ref } from "vue";
 
 const useTags = (posts) => {
   // Creating data
-  const tags = [];
+  const tags = ref([]);
   const tagSet = new Set();
 
   posts.forEach((item) => {
