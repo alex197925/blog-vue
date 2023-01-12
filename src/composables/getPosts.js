@@ -1,24 +1,15 @@
 /** @format */
 import { ref } from "vue";
+import { projectFirestore } from "../firebase/config";
 
 const getPosts = () => {
   const posts = ref([]);
   const error = ref(null);
 
-  // Fetching data, don't forget call the function
   const load = async () => {
     try {
-      // simulate delay
-      // await new Promise((resolve) => {
-      //   setTimeout(resolve, 2000);
-      // });
-      let data = await fetch("http://localhost:3000/posts");
-      // console.log(data);
-      // If is no data, display error message
-      if (!data.ok) {
-        throw Error("no data available");
-      }
-      posts.value = await data.json();
+      const res = await projectFirestore.collection("posts").get();
+      console.log(res.docs);
     } catch (err) {
       error.value = err.message;
       console.log(error.value);
