@@ -8,8 +8,13 @@ const getPosts = () => {
 
   const load = async () => {
     try {
+      // Connecting firebase with frontend
       const res = await projectFirestore.collection("posts").get();
-      console.log(res.docs);
+      // console.log(res.docs);
+      posts.value = res.docs.map((doc) => {
+        // console.log(doc.data());
+        return { ...doc.data(), id: doc.id };
+      });
     } catch (err) {
       error.value = err.message;
       console.log(error.value);

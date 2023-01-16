@@ -3,8 +3,9 @@
 <template>
   <div class="tag">
     <div v-if="error">{{ error }}</div>
-    <div v-if="posts.length">
+    <div v-if="posts.length" class="layout">
       <PostListView :posts="postsWithTag" />
+      <TagCloudView :posts="posts" />
     </div>
     <div v-else>
       <SpinnerView />
@@ -15,12 +16,13 @@
 <script>
 import SpinnerView from "@/components/SpinnerView.vue";
 import PostListView from "@/components/PostListView.vue";
+import TagCloudView from "@/components/TagCloudView.vue";
 import getPosts from "@/composables/getPosts";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
 
 export default {
-  components: { PostListView, SpinnerView },
+  components: { PostListView, SpinnerView, TagCloudView },
   setup() {
     const router = useRoute();
     const { posts, error, load } = getPosts();
@@ -36,4 +38,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.tag {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+</style>
