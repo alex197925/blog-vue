@@ -9,7 +9,10 @@ const getPosts = () => {
   const load = async () => {
     try {
       // Connecting firebase with frontend and getting all collection
-      const res = await projectFirestore.collection("posts").get();
+      const res = await projectFirestore
+        .collection("posts")
+        .orderBy("createdAt", "desc")
+        .get();
       // console.log(res.docs);
       // Using data() method to get all data
       posts.value = res.docs.map((doc) => {
