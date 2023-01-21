@@ -1,5 +1,7 @@
 # blog-vue
 
+# Project Link:   https://blogs-vuejs.netlify.app/
+
 ## Project setup
 ```
 npm install
